@@ -2,6 +2,18 @@
 #include <stdlib.h>
 #include <string.h>
 
+int clampAtoi(int start, int end, char *str) {
+  int num = 0;
+  for (int i = start; str[i] != '\0' && i <= end; i++) {
+    if (str[i] >= 48 && str[i] <= 57) {
+      num = num * 10 + (str[i] - 48);
+    } else {
+      break;
+    }
+  }
+  return num;
+}
+
 int main() {
   long int input;
   long int input2;
@@ -17,16 +29,15 @@ int main() {
   dlugosc = strlen(string);
   for (int podzielnosc = 2; podzielnosc <= dlugosc; podzielnosc++) {
     if (dlugosc % podzielnosc == 0) {
-      printf("podzielne przez: %d\n", podzielnosc);
-      for (int x = 0; x < dlugosc; x + dlugosc / podzielnosc) {
-        for () {
-        }
-      }
+      printf("podzielne przez: %d --> ", podzielnosc);
+      // for (int x = 0; x < dlugosc; x + dlugosc / podzielnosc) {
+      //   for () {
+      //   }
+      // }
+      printf("%d\n", clampAtoi(0, (dlugosc / podzielnosc) - 1, string));
     }
   }
 }
-
-int clampAtoi() {}
 
 // 123|123 : liczba
 // 012|345 : ID w stringu(szuflada z przegrodami)
