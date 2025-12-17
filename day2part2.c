@@ -51,8 +51,8 @@ int main() {
           } else if (polowa1 == polowa2) {
             helpMe++;
             printf("licznik -> %d\n", helpMe);
-            if (helpMe == dlugosc / podzielnosc) {
-              suma += atoi(string);
+            if (helpMe == podzielnosc) {
+              suma = atoi(string);
             }
           }
           // printf("%d-", clampAtoi(x, (x + dlugosc / podzielnosc) - 1,
