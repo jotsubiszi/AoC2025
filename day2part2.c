@@ -23,20 +23,45 @@ int main() {
   char string[20];
   char help[10];
   long int dlugosc = 0;
+  int helpMe = 0;
 
   scanf("%ld-%ld,", &input, &input2);
   sprintf(string, "%ld", input);
   dlugosc = strlen(string);
   for (int podzielnosc = 2; podzielnosc <= dlugosc; podzielnosc++) {
     if (dlugosc % podzielnosc == 0) {
-      printf("podzielne przez: %d --> ", podzielnosc);
-      // for (int x = 0; x < dlugosc; x + dlugosc / podzielnosc) {
-      //   for () {
-      //   }
-      // }
-      printf("%d\n", clampAtoi(0, (dlugosc / podzielnosc) - 1, string));
+      // printf("podzielne przez: %d --> ", podzielnosc);
+      //  for (int x = 0; x < dlugosc; x + dlugosc / podzielnosc) {
+      //    for () {
+      //    }
+      //  }
+      helpMe = 0;
+      for (int x = 0; x < dlugosc; x += dlugosc / podzielnosc) {
+        printf("suma -> %lld\n", suma);
+        // for (int y = 0; y < x + dlugosc / podzielnosc; y++)
+        if (helpMe == 0) {
+          polowa1 = clampAtoi(x, (x + dlugosc / podzielnosc) - 1, string);
+          polowa2 = polowa1;
+          helpMe++;
+        } else {
+          polowa2 = clampAtoi(x, (x + dlugosc / podzielnosc) - 1, string);
+          printf("polowa2 -> %ld\n", polowa2);
+          if (polowa1 != polowa2) {
+            break;
+          } else if (polowa1 == polowa2) {
+            helpMe++;
+            printf("licznik -> %d\n", helpMe);
+            if (helpMe == dlugosc / podzielnosc) {
+              suma += atoi(string);
+            }
+          }
+          // printf("%d-", clampAtoi(x, (x + dlugosc / podzielnosc) - 1,
+          // string));
+        }
+      }
     }
   }
+  printf("sumaLast -> %lld\n", suma);
 }
 
 // 123|123 : liczba
