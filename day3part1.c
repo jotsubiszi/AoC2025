@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
 long long clampAtoi(int start, int end, char *str) {
@@ -23,8 +22,6 @@ int main() {
   unsigned long long final = 0;
   while (1) {
     scanf("%s", str);
-    // sprintf(str, "%llu", input);
-    // printf("%s", str);
     for (int i = 0; i < strlen(str); i++) {
       if (str[i] > highest) {
         highest = str[i];
@@ -58,4 +55,5 @@ int main() {
 
     printf("%llu\n----------------------\n", final);
   }
+  return 0;
 }
