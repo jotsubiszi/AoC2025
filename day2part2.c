@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-int clampAtoi(int start, int end, char *str) {
-  int num = 0;
+long long clampAtoi(int start, int end, char *str) {
+  long long num = 0;
   for (int i = start; str[i] != '\0' && i <= end; i++) {
     if (str[i] >= 48 && str[i] <= 57) {
       num = num * 10 + (str[i] - 48);
@@ -13,57 +13,55 @@ int clampAtoi(int start, int end, char *str) {
   }
   return num;
 }
-
-int main() {
-  long int input;
-  long int input2;
-  long int polowa1;
-  long int polowa2;
+long long logic(long long dlugosc, char *string) {
+  long long polowa1;
+  long long polowa2;
   long long suma = 0;
-  char string[20];
-  char help[10];
-  long int dlugosc = 0;
   int helpMe = 0;
-
-  scanf("%ld-%ld,", &input, &input2);
-  sprintf(string, "%ld", input);
-  dlugosc = strlen(string);
   for (int podzielnosc = 2; podzielnosc <= dlugosc; podzielnosc++) {
     if (dlugosc % podzielnosc == 0) {
-      // printf("podzielne przez: %d --> ", podzielnosc);
-      //  for (int x = 0; x < dlugosc; x + dlugosc / podzielnosc) {
-      //    for () {
-      //    }
-      //  }
       helpMe = 0;
       for (int x = 0; x < dlugosc; x += dlugosc / podzielnosc) {
-        printf("suma -> %lld\n", suma);
-        // for (int y = 0; y < x + dlugosc / podzielnosc; y++)
         if (helpMe == 0) {
           polowa1 = clampAtoi(x, (x + dlugosc / podzielnosc) - 1, string);
           polowa2 = polowa1;
           helpMe++;
         } else {
           polowa2 = clampAtoi(x, (x + dlugosc / podzielnosc) - 1, string);
-          printf("polowa2 -> %ld\n", polowa2);
           if (polowa1 != polowa2) {
             break;
           } else if (polowa1 == polowa2) {
             helpMe++;
-            printf("licznik -> %d\n", helpMe);
             if (helpMe == podzielnosc) {
-              suma = atoi(string);
+              suma = atoll(string);
+              return suma;
             }
           }
-          // printf("%d-", clampAtoi(x, (x + dlugosc / podzielnosc) - 1,
-          // string));
         }
       }
     }
   }
-  printf("sumaLast -> %lld\n", suma);
+  return 0;
 }
 
-// 123|123 : liczba
-// 012|345 : ID w stringu(szuflada z przegrodami)
-// 385350926-385403705,48047-60838,6328350434-6328506208,638913-698668,850292-870981,656-1074,742552-796850,4457-6851,138-206,4644076-4851885,3298025-3353031,8594410816-8594543341,396-498,1558-2274,888446-916096,12101205-12154422,2323146444-2323289192,37-57,101-137,46550018-46679958,79-96,317592-341913,495310-629360,33246-46690,14711-22848,1-17,2850-4167,3723700171-3723785996,190169-242137,272559-298768,275-365,7697-11193,61-78,75373-110112,425397-451337,9796507-9899607,991845-1013464,77531934-77616074
+int main() {
+  long long input;
+  long long input2;
+  unsigned long long sumaKoncowa = 0;
+  char string[50];
+
+  while (1) {
+    scanf("%lld-%lld,", &input, &input2);
+
+    for (int i = 0; input + i <= input2; i++) {
+      sprintf(string, "%lld", input + i);
+      if (logic(strlen(string), string)) {
+      }
+      sumaKoncowa += logic(strlen(string), string);
+    }
+
+    printf("%lldu\n", sumaKoncowa);
+  }
+
+  return 0;
+}
