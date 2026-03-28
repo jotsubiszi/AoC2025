@@ -1,7 +1,9 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 int main(void) {
+  system("clear");
   char array[999][999];
   FILE *filePointer;
   filePointer = fopen("input.txt", "r");
@@ -49,7 +51,13 @@ int main(void) {
       }
       printf("\n");
     }
-    printf("--------------------------\n");
+    for (int a = 0; a < 9999; a++) {
+      ;
+      for (int a = 0; a < 9999; a++) {
+        ;
+      }
+    }
+    system("clear");
     sumOfSums += sum;
   } while (sum > 0);
   printf("%d\n", sumOfSums);
